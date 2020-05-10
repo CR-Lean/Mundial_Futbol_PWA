@@ -13,8 +13,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
         <div class="col-sm-4">
             <div class="card bg-light mb-3">
-                <div class="card-header bg-secondary text-white">
-                    <h5> <?php echo $unaTupla['Club']; ?>: </h5>
+                <div class="card-header bg-secondary text-center text-white">
+                    <h4> <?php echo $unaTupla['Club']; ?>: </h4>
                 </div>
 
                 <div class="card-body">
