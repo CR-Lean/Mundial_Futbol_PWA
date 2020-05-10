@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Club;
 use app\models\Jugador;
 use app\models\JugadorSearch;
 use yii\web\Controller;
@@ -33,16 +34,30 @@ class JugadorController extends Controller
      * Lists all Jugador models.
      * @return mixed
      */
-    public function actionIndex()
-    {
-        $searchModel = new JugadorSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+     public function actionIndex() {
+         //buscamos los clubes existentes
+         $query = Club::find();
+         $Clubes = $query->all();
+         $arrayJugadores = [];
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
+         //buscamos las diferentes posiciones que existen
+         $queryJugador = Jugador::find()->distinct('posicion')->groupBy('posicion');
+         foreach ($Clubes as $unClub) {
+
+             $posiciones = $queryJugador->all();
+             $arrayPosiciones = [];
+
+             foreach ($posiciones as $unaPos) {
+                 //contamos la cantidad de jugadores que tiene un club en una determinada posicion
+                 $prueba = Jugador::find()->where(['idClub' => $unClub->idClub, 'Posicion' => $unaPos->Posicion])->count();
+
+                 array_push($arrayPosiciones, ['Posicion' => $unaPos->Posicion, 'CantidadJugadores' => $prueba]);
+             }
+             array_push($arrayJugadores, ['Club' => $unClub->Nombre, 'Data' => $arrayPosiciones]);
+         }
+         return $this->render('index', ['data' => $arrayJugadores]);
+     }
+
 
     /**
      * Displays a single Jugador model.
@@ -108,6 +123,64 @@ class JugadorController extends Controller
 
         return $this->redirect(['index']);
     }
+
+
+
+
+
+
+    public function actionListarposicionesclub() {
+         //buscamos los clubes existentes
+         $queryClubes = Club::find();
+         $clubes = $queryClubes->all();
+         $arrayClubes = [];
+
+         foreach ($clubes as $unClub) {
+
+             //creamos una query personalizada utilizando un objeto query de Yii
+             $queryJugadores = (new \yii\db\Query())
+ //            $queryJugador = Jugador::find()
+                     ->select(['jugador.posicion', 'count(*) as CantidadJugadores']) //parametros seleccionados
+ //                    ->distinct('jugador.posicion')
+                     ->from('jugador')                                               //tabla
+                     ->innerJoin('club', 'jugador.idClub = club.idClub')             //relacion tablas
+                     ->where(['jugador.idclub' => $unClub->idClub])                  //condicion
+                     ->groupBy(['jugador.posicion']);                                //agrupamiento
+
+             //obtenemos el array asociativo a partir de la query
+             $dataClub = $queryJugadores->all();
+
+             //agregamos los datos correspondientes al club
+             array_push($arrayClubes, ['Club' => $unClub->Nombre, 'DataClub' => $dataClub]);
+         }
+         return $this->render('listarposicionesclub', ['data' => $arrayClubes]);
+     }
+
+     public function actionListarjugadoresclub($club) {
+         //buscamos los clubes existentes
+         $queryJugadoresClub = (new \yii\db\Query())
+ //            $queryJugador = Jugador::find()
+                     ->select(['jugador.*', 'pais.nombre as nombrePais'])          //parametros seleccionados
+ //                    ->distinct('jugador.posicion')
+                     ->from('jugador')                                                 //tabla
+                     ->innerJoin('club', 'jugador.idClub = club.idClub')               //relacion tablas
+                     ->innerJoin('pais', 'jugador.idPais = pais.idPais')               //relacion tablas
+                     ->where(['club.nombre' => $club]);                          //condicion
+ //                    ->groupBy(['jugador.posicion']);                                //agrupamiento
+
+ //        $queryJugadoresClub = Club::find();
+ //        $clubes = $queryClubes->all();
+ //        $arrayClubes = [];
+         $dataJugadoresClub = $queryJugadoresClub->all();
+
+         return $this->render('listarjugadoresclub', ['club' => $club, 'dataJugadores' => $dataJugadoresClub]);
+     }
+
+
+
+
+
+
 
     /**
      * Finds the Jugador model based on its primary key value.
