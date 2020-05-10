@@ -63,7 +63,7 @@ class Jugador extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getIdPais0()
+    public function getIdPais()
     {
         return $this->hasOne(Pais::className(), ['idPais' => 'idPais']);
     }
@@ -73,7 +73,7 @@ class Jugador extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getIdClub0()
+    public function getIdClub()
     {
         return $this->hasOne(Club::className(), ['idClub' => 'idClub']);
     }

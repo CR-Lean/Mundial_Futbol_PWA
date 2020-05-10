@@ -5,9 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\Pais;
 use app\models\PaisSearch;
+use app\models\Jugador;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
+
 
 /**
  * PaisController implements the CRUD actions for Pais model.
@@ -108,6 +111,40 @@ class PaisController extends Controller
 
         return $this->redirect(['index']);
     }
+
+    /**
+    *Se recibe un id de un pais y se lista todos los jugadores que están asiciado
+    *a ese pais.
+    */
+
+    public function actionListaJugadores($id, $nombre)
+    {
+      $query = Jugador::find()
+                  ->asArray()
+                  ->select([
+                    'jugador.*',
+                    'club.Nombre AS Club',
+                  ])
+                  ->innerJoinWith('idClub')
+                  ->where(['jugador.idPais' => $id]);
+
+      $paginacion = new Pagination([
+        'defaultPageSize' => 6,
+        'totalCount' => $query->count(),
+      ]);
+
+      $jugadores = $query->offset($paginacion->offset)
+                  ->limit($paginacion->limit)
+                  ->all();
+
+      return $this->render('lista-jugadores', [
+        'lista' => $jugadores,
+        'paginacion' => $paginacion,
+        'nombre_pais' => $nombre,
+      ]);
+    }
+
+
 
     /**
      * Finds the Pais model based on its primary key value.

@@ -10,7 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Jugador;
-use app\models\PaisSearch;
+use app\models\Pais;
 
 class SiteController extends Controller
 {
@@ -63,7 +63,16 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+      $query = Pais::find();
+      $paises = $query->all();
+      $paisCount = [];
+      foreach ($paises as $pais) {
+        $queryJugador = Jugador::find()
+        ->where(['idPais' => $pais->idPais])
+        ->count();
+        array_push($paisCount, ['idPais' => $pais->idPais,'Pais' => $pais->Nombre, 'Cantidad' => $queryJugador]);
+      }
+        return $this->render('index', ['data' => $paisCount]);
     }
 
     /**
