@@ -45,4 +45,4 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endforeach; ?>
 </div>
 
-<a href="<?= Url::to(['jugador/listarposicionesclub']); ?>">Volver</a>
+<a href="<?= Url::toRoute(['club/listarposicionesclub']); ?>">Volver</a>

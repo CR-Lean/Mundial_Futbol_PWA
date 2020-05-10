@@ -38,8 +38,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Paises', 'url' => ['/site/index']],
+            ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Clubes', 'url' => ['/club/listarposicionesclub']],
+            ['label' => 'Paises', 'url' => ['/pais/cantidad-jugadores']],
           /**  Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

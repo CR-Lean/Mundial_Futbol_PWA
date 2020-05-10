@@ -56,27 +56,9 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
-      $query = Pais::find();
-      $paises = $query->all();
-      $paisCount = [];
-      foreach ($paises as $pais) {
-        $queryJugador = Jugador::find()
-        ->where(['idPais' => $pais->idPais])
-        ->count();
-        array_push($paisCount, ['idPais' => $pais->idPais,'Pais' => $pais->Nombre, 'Cantidad' => $queryJugador]);
-      }
-        return $this->render('index', ['data' => $paisCount]);
-    }
-    public function actionIndex2()
-    {
-        return $this->render('index2');
+        return $this->render('index');
     }
 
     /**

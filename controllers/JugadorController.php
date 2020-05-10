@@ -29,35 +29,20 @@ class JugadorController extends Controller
             ],
         ];
     }
-
     /**
-     * Lists all Jugador models.
-     * @return mixed
-     */
-     public function actionIndex() {
-         //buscamos los clubes existentes
-         $query = Club::find();
-         $Clubes = $query->all();
-         $arrayJugadores = [];
+ * Lists all Jugador models.
+ * @return mixed
+ */
+    public function actionIndex()
+    {
+        $searchModel = new JugadorSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-         //buscamos las diferentes posiciones que existen
-         $queryJugador = Jugador::find()->distinct('posicion')->groupBy('posicion');
-         foreach ($Clubes as $unClub) {
-
-             $posiciones = $queryJugador->all();
-             $arrayPosiciones = [];
-
-             foreach ($posiciones as $unaPos) {
-                 //contamos la cantidad de jugadores que tiene un club en una determinada posicion
-                 $prueba = Jugador::find()->where(['idClub' => $unClub->idClub, 'Posicion' => $unaPos->Posicion])->count();
-
-                 array_push($arrayPosiciones, ['Posicion' => $unaPos->Posicion, 'CantidadJugadores' => $prueba]);
-             }
-             array_push($arrayJugadores, ['Club' => $unClub->Nombre, 'Data' => $arrayPosiciones]);
-         }
-         return $this->render('index', ['data' => $arrayJugadores]);
-     }
-
+        return $this->render('index', [
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
+    ]);
+    }
 
     /**
      * Displays a single Jugador model.
@@ -123,9 +108,11 @@ class JugadorController extends Controller
 
         return $this->redirect(['index']);
     }
-     public function actionListarjugadoresclub($club) {
-         //buscamos los clubes existentes
-         $queryJugadoresClub = (new \yii\db\Query())
+
+    public function actionListarjugadoresclub($club)
+    {
+        //buscamos los clubes existentes
+        $queryJugadoresClub = (new \yii\db\Query())
  //            $queryJugador = Jugador::find()
                      ->select(['jugador.*', 'pais.nombre as nombrePais'])          //parametros seleccionados
  //                    ->distinct('jugador.posicion')
@@ -136,12 +123,12 @@ class JugadorController extends Controller
  //                    ->groupBy(['jugador.posicion']);                                //agrupamiento
 
  //        $queryJugadoresClub = Club::find();
- //        $clubes = $queryClubes->all();
- //        $arrayClubes = [];
-         $dataJugadoresClub = $queryJugadoresClub->all();
+        //        $clubes = $queryClubes->all();
+        //        $arrayClubes = [];
+        $dataJugadoresClub = $queryJugadoresClub->all();
 
-         return $this->render('listarjugadoresclub', ['club' => $club, 'dataJugadores' => $dataJugadoresClub]);
-     }
+        return $this->render('listarjugadoresclub', ['club' => $club, 'dataJugadores' => $dataJugadoresClub]);
+    }
     /**
      * Finds the Jugador model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

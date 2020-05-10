@@ -143,8 +143,24 @@ class PaisController extends Controller
         'nombre_pais' => $nombre,
       ]);
     }
-
-
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionCantidadJugadores()
+    {
+      $query = Pais::find();
+      $paises = $query->all();
+      $paisCount = [];
+      foreach ($paises as $pais) {
+        $queryJugador = Jugador::find()
+        ->where(['idPais' => $pais->idPais])
+        ->count();
+        array_push($paisCount, ['idPais' => $pais->idPais,'Pais' => $pais->Nombre, 'Cantidad' => $queryJugador]);
+      }
+        return $this->render('cantidad-jugadores', ['data' => $paisCount]);
+    }
 
     /**
      * Finds the Pais model based on its primary key value.
