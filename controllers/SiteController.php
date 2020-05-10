@@ -74,6 +74,10 @@ class SiteController extends Controller
       }
         return $this->render('index', ['data' => $paisCount]);
     }
+    public function actionIndex2()
+    {
+        return $this->render('index2');
+    }
 
     /**
      * Login action.
