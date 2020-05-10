@@ -4,13 +4,9 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 $this->title = 'Asociación Mundial de Futbol';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-index">
-
-  <div class="jumbotron">
-    <h1>Mundial de Futbol</h1>
-  </div>
-
+<h1 class="text-center mb-4"> Cantidad de Jugadores por Pais </h1>
 
 
   <div class="body-content">
