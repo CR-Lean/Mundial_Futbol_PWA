@@ -1,6 +1,7 @@
 <?php
-//use yii\helpers\Html;
+
 use yii\helpers\Url;
+
 $this->title = "Listado Clubes de Futbol";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -12,9 +13,15 @@ $this->params['breadcrumbs'][] = $this->title;
     foreach ($data as $unaTupla):
         ?>
         <div class="col-sm-4">
+<<<<<<< HEAD:views/club/listarposicionesclub.php
             <div class="panel panel-default mb-3">
                 <div class="panel-heading bg-secondary text-white">
                     <h5 class = "panel-title"> <?php echo $unaTupla['Club']; ?>: </h5>
+=======
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-secondary text-center text-white">
+                    <h4> <?php echo $unaTupla['Club']; ?>: </h4>
+>>>>>>> eccaeb6ab25fb3f4ed8d2850e9683ee045439669:views/jugador/listarposicionesclub.php
                 </div>
 
                 <div class="panel-body">
@@ -31,14 +38,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ?>
                                 <tr>
                                     <td> <?php echo $datosClub['posicion'] ?> </td>
-                                    <td class="text-center"> <?php echo $datosClub['CantidadJugadores'] ?> </td>
+                                    <td class="text-center"> <?php echo $datosClub['CantidadJugadores']; ?> </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
 
-                     <a href="<?= Url::toRoute(['jugador/listarjugadoresclub', 'club' => $unaTupla['Club']]);?>" class="btn btn-secondary" role="button"> Mas Detalles... </a>
-                    <!-- <a href="index.php?r=jugadorclub%2Flistarjugadoresclub&club=<?php echo $unaTupla['Club']; ?>" class="btn btn-secondary" role="button"> Mas Detalles... </a> -->
+                    <a href="<?= Url::toRoute(['jugador/listarjugadoresclub', 'club' => $unaTupla['Club']]); ?>" class="btn btn-secondary" role="button"> Mas Detalles... </a>
                 </div>
             </div>
         </div>

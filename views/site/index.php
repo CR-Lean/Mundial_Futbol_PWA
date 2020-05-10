@@ -9,7 +9,10 @@ $this->title = 'Asociación Mundial de Futbol';
 
   <div class="jumbotron">
     <h1>Mundial de Futbol</h1>
+<<<<<<< HEAD
 
+=======
+>>>>>>> eccaeb6ab25fb3f4ed8d2850e9683ee045439669
   </div>
 
 
