@@ -1,6 +1,7 @@
 <?php
-//use yii\helpers\Html;
+
 use yii\helpers\Url;
+
 $this->title = "Listado Clubes de Futbol";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -31,14 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ?>
                                 <tr>
                                     <td> <?php echo $datosClub['posicion'] ?> </td>
-                                    <td class="text-center"> <?php echo $datosClub['CantidadJugadores'] ?> </td>
+                                    <td class="text-center"> <?php echo $datosClub['CantidadJugadores']; ?> </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
 
-                     <a href="<?= Url::toRoute(['jugador/listarjugadoresclub', 'club' => $unaTupla['Club']]);?>" class="btn btn-secondary" role="button"> Mas Detalles... </a>
-                    <!-- <a href="index.php?r=jugadorclub%2Flistarjugadoresclub&club=<?php echo $unaTupla['Club']; ?>" class="btn btn-secondary" role="button"> Mas Detalles... </a> -->
+                    <a href="<?= Url::toRoute(['jugador/listarjugadoresclub', 'club' => $unaTupla['Club']]); ?>" class="btn btn-secondary" role="button"> Mas Detalles... </a>
                 </div>
             </div>
         </div>
