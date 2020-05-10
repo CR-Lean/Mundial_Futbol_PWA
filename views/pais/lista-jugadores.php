@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 
 $this->title = 'Jugadores - ' . $nombre_pais;
+$this->params['breadcrumbs'][] = ['label' => 'Asociación Mundial de Futbol', 'url' => ['cantidad-jugadores']];
 $this->params['breadcrumbs'][] = $this->title;
 
 \yii\web\YiiAsset::register($this);

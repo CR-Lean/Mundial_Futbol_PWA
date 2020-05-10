@@ -3,6 +3,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 
 $this->title = "Jugadores ".$club;
+$this->params['breadcrumbs'][] = ['label' => 'Listado Clubes de Futbol', 'url' => ['club/listarposicionesclub']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
