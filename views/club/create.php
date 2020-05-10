@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Club */
 
-$this->title = 'Create Club';
+$this->title = 'Crear Club';
 $this->params['breadcrumbs'][] = ['label' => 'Clubs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
