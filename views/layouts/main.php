@@ -39,7 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Paises', 'url' => ['/site/index']],
-            ['label' => 'Clubes', 'url' => ['/jugador/listarposicionesclub']],
+            ['label' => 'Clubes', 'url' => ['/club/listarposicionesclub']],
           /**  Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

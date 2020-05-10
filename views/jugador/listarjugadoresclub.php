@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
         <div class="col-sm-8 col-md-4 mt-4">
             <div class="card">
-                <img class="card-img-top" width="200" height="150" src="<?= Yii::getAlias("@web/images/default.jpg") ?>" title="<?php echo $unaTupla['Nombre'] ?>">
+                <img class="card-img" src="<?= Yii::getAlias("@web/images/default.jpg") ?>" title="<?php echo $unaTupla['Nombre'] ?>">
                 <div class="card-body">
                     <table class="table table-hover">
                         <tbody>

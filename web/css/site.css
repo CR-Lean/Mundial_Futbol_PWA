@@ -125,3 +125,22 @@ a.desc:after {
     color: #FFF;
     background-color: #194255;
 }
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #BFE0F2;
+}
+
+#info-club .panel-heading {
+  background-color: #7c7c7c;
+  color: #fff;
+}
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 1rem;
+  margin-top: 5px;
+  padding: 5px;
+}
+.card-img {
+  width:60%;
+  display:block;
+  margin:auto;
+}

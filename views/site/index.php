@@ -1,7 +1,5 @@
 <?php
-use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 
@@ -10,7 +8,7 @@ $this->title = 'Asociación Mundial de Futbol';
 <div class="site-index">
 
   <div class="jumbotron">
-    <h1>Mundial de Fubtol</h1>
+    <h1>Mundial de Futbol</h1>
 
   </div>
 

@@ -109,6 +109,33 @@ class ClubController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionListarposicionesclub() {
+         //buscamos los clubes existentes
+         $queryClubes = Club::find();
+         $clubes = $queryClubes->all();
+         $arrayClubes = [];
+
+         foreach ($clubes as $unClub) {
+
+             //creamos una query personalizada utilizando un objeto query de Yii
+             $queryJugadores = (new \yii\db\Query())
+ //            $queryJugador = Jugador::find()
+                     ->select(['jugador.posicion', 'count(*) as CantidadJugadores']) //parametros seleccionados
+ //                    ->distinct('jugador.posicion')
+                     ->from('jugador')                                               //tabla
+                     ->innerJoin('club', 'jugador.idClub = club.idClub')             //relacion tablas
+                     ->where(['jugador.idclub' => $unClub->idClub])                  //condicion
+                     ->groupBy(['jugador.posicion']);                                //agrupamiento
+
+             //obtenemos el array asociativo a partir de la query
+             $dataClub = $queryJugadores->all();
+
+             //agregamos los datos correspondientes al club
+             array_push($arrayClubes, ['Club' => $unClub->Nombre, 'DataClub' => $dataClub]);
+         }
+         return $this->render('listarposicionesclub', ['data' => $arrayClubes]);
+     }
+
     /**
      * Finds the Club model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

@@ -5,19 +5,19 @@ $this->title = "Listado Clubes de Futbol";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1 class="text-center mb-4"> Listado Clubes de Futbol </h1>
-
+<div id="info-club">
 <div class='row'>
     <?php
 //    print_r($data);
     foreach ($data as $unaTupla):
         ?>
         <div class="col-sm-4">
-            <div class="card bg-light mb-3">
-                <div class="card-header bg-secondary text-white">
-                    <h5> <?php echo $unaTupla['Club']; ?>: </h5>
+            <div class="panel panel-default mb-3">
+                <div class="panel-heading bg-secondary text-white">
+                    <h5 class = "panel-title"> <?php echo $unaTupla['Club']; ?>: </h5>
                 </div>
 
-                <div class="card-body">
+                <div class="panel-body">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -43,4 +43,5 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     <?php endforeach; ?>
+</div>
 </div>
