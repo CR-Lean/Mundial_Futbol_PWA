@@ -118,7 +118,6 @@ a.desc:after {
     outline: none;
 }
 
-
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
@@ -130,8 +129,10 @@ a.desc:after {
 }
 
 #info-club .panel-heading {
-  background-color: #7c7c7c;
-  color: #fff;
+  /*background-color: #7c7c7c;*/
+  background-color: #BFE0F2;
+  /*color: #fff;*/
+  color: #194255;
 }
 .card {
   border: 1px solid rgba(0, 0, 0, 0.125);
