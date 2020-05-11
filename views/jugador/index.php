@@ -31,12 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'idClub',
                 'label' => 'Club',
-                'value' => 'idClub0.Nombre',
+                'value' => 'idClub0.Nombre', //valor referenciado por ActiveQuery en el metodo idClub0
             ],
             [
                 'attribute' => 'idPais',
                 'label' => 'Pais',
-                'value' => 'idPais0.Nombre',
+                'value' => 'idPais0.Nombre', //valor referenciado por ActiveQuery en el metodo idPais0
             ],
             'Fecha',
             ['class' => 'yii\grid\ActionColumn'],

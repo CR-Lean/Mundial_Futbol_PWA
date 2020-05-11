@@ -109,6 +109,12 @@ class ClubController extends Controller
         return $this->redirect(['index']);
     }
 
+    /**
+     * METODO listarposicionesclub --> Genera un array asociativo que contiene el nombre del club
+     * y el listado de cantidad de jugadores por posicion del mismo 
+     * 
+     * @return mixed
+     */
     public function actionListarposicionesclub() {
          //buscamos los clubes existentes
          $queryClubes = Club::find();
@@ -117,7 +123,8 @@ class ClubController extends Controller
 
          foreach ($clubes as $unClub) {
 
-             //creamos una query personalizada utilizando un objeto query de Yii
+             //creamos una query personalizada para obtener la cantidad de jugadores por posicion
+             //de un equipo particular. Hace uso de un objeto query de Yii
              $queryJugadores = (new \yii\db\Query())
  //            $queryJugador = Jugador::find()
                      ->select(['jugador.posicion', 'count(*) as CantidadJugadores']) //parametros seleccionados
@@ -130,7 +137,7 @@ class ClubController extends Controller
              //obtenemos el array asociativo a partir de la query
              $dataClub = $queryJugadores->all();
 
-             //agregamos los datos correspondientes al club
+             //agregamos los datos correspondientes al club al arreglo de clubes
              array_push($arrayClubes, ['Club' => $unClub->Nombre, 'DataClub' => $dataClub]);
          }
          return $this->render('listarposicionesclub', ['data' => $arrayClubes]);
