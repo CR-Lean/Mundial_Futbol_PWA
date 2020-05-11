@@ -13,9 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
     foreach ($data as $unaTupla):
         ?>
         <div class="col-sm-4">
-            <div class="panel panel-default mb-3">
-                <div class="panel-heading bg-secondary text-white">
-                    <h5 class = "panel-title"> <?php echo $unaTupla['Club']; ?>: </h5>
+            <div class="panel panel-info">
+                <div class="panel-heading text-white">
+                    <h5 class = "panel-title text-center"> <?php echo $unaTupla['Club']; ?>: </h5>
                 </div>
 
                 <div class="panel-body">
