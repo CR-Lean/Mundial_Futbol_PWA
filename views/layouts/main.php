@@ -70,9 +70,9 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">PWA &copy; <?= date('Y') ?> | Leandro Casanova - Felipe Bastidas</p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right"> <a href="https://github.com/CR-Lean/Mundial_Futbol_PWA"> Por el poder de GitHub </a> </p>
     </div>
 </footer>
 
