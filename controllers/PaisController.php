@@ -119,6 +119,7 @@ class PaisController extends Controller
 
     public function actionListaJugadores($id, $nombre)
     {
+      // Consulta a la base de datos, con la condicion del id del Jugador
       $query = Jugador::find()
                   ->asArray()
                   ->select([
@@ -127,7 +128,8 @@ class PaisController extends Controller
                   ])
                   ->innerJoinWith('idClub')
                   ->where(['jugador.idPais' => $id]);
-
+      // Creamos una nueva instancia de Pagination para mostrar una Cantidad
+      //de informar mas reducida
       $paginacion = new Pagination([
         'defaultPageSize' => 10,
         'totalCount' => $query->count(),
@@ -144,12 +146,15 @@ class PaisController extends Controller
       ]);
     }
     /**
-     * Displays homepage.
+     * Mustra la cantidad de los jugadores que tiene los paises.
      *
      * @return string
      */
     public function actionCantidadJugadores()
     {
+      //Se consulta a la base datos en buqueda de los $paises
+      //luego con el identificador del pais se buscan los $jugadores
+      //que pertenecen al dicho pais y se suman a un contador.
       $query = Pais::find();
       $paises = $query->all();
       $paisCount = [];
