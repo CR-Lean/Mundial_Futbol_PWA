@@ -129,7 +129,7 @@ class PaisController extends Controller
                   ->where(['jugador.idPais' => $id]);
 
       $paginacion = new Pagination([
-        'defaultPageSize' => 15,
+        'defaultPageSize' => 10,
         'totalCount' => $query->count(),
       ]);
 
