@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
 use yii\widgets\LinkPager;
 
 $this->title = 'Jugadores - ' . $nombre_pais;
@@ -7,8 +8,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 \yii\web\YiiAsset::register($this);
 ?>
+<h1> Selección de <?= Html::encode("{$nombre_pais}")?></h1>
+
 <div class="jugadorPais-view">
-<div class="row justify-content-center">
+<div class="row">
   <div class="col-md-12">
 
     <table class="table table-hover">
@@ -24,10 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php foreach ($lista as $jugador): ?>
         <tr>
-          <th scope="row"><?=$jugador['Nombre']?></th>
-          <td scope="row"><?=$jugador['Posicion']?></td>
-          <td scope="row"><?=$jugador['Fecha']?></td>
-          <td scope="row"><?=$jugador['Club']?></td>
+          <td scope="row"><?= Html::encode("{$jugador['Nombre']}")?></th>
+          <td scope="row"><?= Html::encode("{$jugador['Posicion']}")?></td>
+          <td scope="row"><?= Html::encode("{$jugador['Fecha']}")?></td>
+          <td scope="row"><?= Html::encode("{$jugador['Club']}")?></td>
         </tr>
       <?php endforeach; ?>
       </tbody>
