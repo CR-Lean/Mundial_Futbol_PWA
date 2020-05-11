@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ClubSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Clubs';
+$this->title = 'ABM Clubes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="club-index">
@@ -26,9 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idClub',
-            'Ciudad',
+//            'idClub',
             'Nombre',
+            'Ciudad',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

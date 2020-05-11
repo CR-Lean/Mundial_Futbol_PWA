@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PaisSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pais';
+$this->title = 'ABM Paises';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pais-index">
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idPais',
+//            'idPais',
             'Nombre',
 
             ['class' => 'yii\grid\ActionColumn'],

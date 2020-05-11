@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\JugadorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Jugadors';
+$this->title = 'ABM Jugadores';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="jugador-index">
@@ -25,12 +25,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'idJugador',
-            'idPais',
-            'idClub',
+//            'idJugador',
             'Nombre',
-            'Fecha',
             'Posicion',
+            [
+                'attribute' => 'idClub',
+                'label' => 'Club',
+                'value' => 'idClub0.Nombre',
+            ],
+            [
+                'attribute' => 'idPais',
+                'label' => 'Pais',
+                'value' => 'idPais0.Nombre',
+            ],
+            'Fecha',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
